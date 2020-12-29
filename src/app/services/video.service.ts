@@ -9,9 +9,6 @@ export class VideoService {
 
   $videoURI = this.videoURI.asObservable();
 
-  // newVideoURI = `//storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd`;
-  newVideoURI = `https://storage.googleapis.com/shaka-demo-assets/bbb-dark-truths-hls/hls.m3u8`;
-
   constructor() {}
 
   playVideo(currentVideoURI: string) {

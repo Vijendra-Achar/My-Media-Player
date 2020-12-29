@@ -6,22 +6,22 @@
 
   <br />
 
+</div>
 
 
-  <mat-grid-list cols="2" rowHeight="2:1">
 
-    <div *ngFor="let vid of allVideos">
-      <mat-card class="example-card">
-        <mat-card-title align="start">{{ vid?.name }}</mat-card-title>
-        <mat-card-subtitle align="start">{{ vid?.subTitle }}</mat-card-subtitle>
-        <mat-card-actions align="start">
-          <button color="primary" (click)="playMe(vid.uri)" mat-raised-button>Play Me</button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
+<div class="center-card" *ngFor="let vid of allVideos">
 
-  </mat-grid-list>
+  <mat-card>
+    <mat-card-title align="start">{{ vid?.name }}</mat-card-title>
+    <mat-card-subtitle align="start">{{ vid?.subTitle }}</mat-card-subtitle>
+    <mat-card-actions align="start">
 
-
+      <button color="primary" (click)="playMe(vid.uri)" mat-raised-button>
+        <mat-icon>play_arrow</mat-icon>
+        Play this
+      </button>
+    </mat-card-actions>
+  </mat-card>
 
 </div>

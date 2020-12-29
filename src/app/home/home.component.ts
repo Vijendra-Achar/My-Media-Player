@@ -1,7 +1,7 @@
 import { Video } from './../services/video.model';
 import { GetVideosService } from './../services/get-videos.service';
 import { VideoService } from './../services/video.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getVideos.getAllVides.subscribe((videos) => {
+    this.getVideos.getAllVideos().subscribe((videos: Array<Video>) => {
       this.allVideos = videos;
     });
   }
