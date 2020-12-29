@@ -1,3 +1,4 @@
+import { GetVideosService } from './../services/get-videos.service';
 import { VideoService } from './../services/video.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
@@ -7,13 +8,20 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private video: VideoService) {}
+  allVideos: Array<string>;
 
-  ngOnInit(): void {}
+  constructor(
+    private video: VideoService,
+    private getVideos: GetVideosService
+  ) {}
 
-  playMe() {
-    this.video.playVideo(
-      `https://storage.googleapis.com/shaka-demo-assets/bbb-dark-truths-hls/hls.m3u8`
-    );
+  ngOnInit(): void {
+    this.getVideos.getAllVides.subscribe((videos) => {
+      this.allVideos = videos;
+    });
+  }
+
+  playMe(theVideoId: string) {
+    this.video.playVideo(theVideoId);
   }
 }

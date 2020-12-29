@@ -9,6 +9,7 @@ const MaterialComponents = [
   MatToolbarModule,
   MatIconModule,
   MatSnackBarModule,
+  MatButtonModule,
 ];
 
 @NgModule({

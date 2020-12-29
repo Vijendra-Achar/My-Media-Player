@@ -6,5 +6,10 @@
 
   <br />
 
-  <button color="primary" (click)="playMe()" mat-raised-button>Play Video</button>
+  <div *ngFor="let vid of allVideos">
+    <button color="primary" (click)="playMe(vid)" mat-raised-button>
+      <mat-icon>play_arrow</mat-icon> Play Video
+    </button>
+  </div>
+
 </div>
