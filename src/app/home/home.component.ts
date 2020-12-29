@@ -1,3 +1,4 @@
+import { Video } from './../services/video.model';
 import { GetVideosService } from './../services/get-videos.service';
 import { VideoService } from './../services/video.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
@@ -8,7 +9,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  allVideos: Array<string>;
+  allVideos: Array<Video>;
 
   constructor(
     private video: VideoService,
