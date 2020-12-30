@@ -1,0 +1,25 @@
+label {
+  background-color: indigo;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.space {
+  margin-left: 1em;
+}
+
+.center {
+  text-align: center;
+}
+
+mat-form-field {
+  width: 30%;
+  margin: 15px;
+}
+
+.space-above {
+  margin-top: 20px;
+}

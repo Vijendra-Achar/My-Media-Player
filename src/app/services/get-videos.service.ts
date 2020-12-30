@@ -7,8 +7,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class GetVideosService {
-  private allVideos: Array<Video>;
-
   constructor(private afs: AngularFirestore) {}
 
   getAllVideos() {

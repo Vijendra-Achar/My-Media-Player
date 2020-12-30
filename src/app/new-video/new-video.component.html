@@ -1,0 +1,49 @@
+<div class="center">
+
+
+  <h1>Please enter the following details to upload the Video</h1>
+  <h3>You can upload the video from your device or from a remote link</h3>
+
+  <form>
+
+    <mat-form-field>
+      <mat-label>Name of the Video</mat-label>
+      <input matInput required>
+      <mat-hint>Minimum 5 Characters</mat-hint>
+    </mat-form-field>
+    <br />
+
+    <mat-form-field>
+      <mat-label>Video Description</mat-label>
+      <input matInput required>
+      <mat-hint>Minimum 10 Characters</mat-hint>
+    </mat-form-field>
+
+    <br />
+
+
+    <div class="space-above">
+      <label for="input-file-id" class="space-above">Choose Files</label>
+      <input hidden="true" (change)="checkFile($event)" type="file" class="ng-hide" id="input-file-id" />
+
+      <span class="space" *ngIf="!theFileName" id="file-chosen">No file chosen</span>
+      <span class="space" *ngIf="theFileName" id="file-chosen">{{ theFileName }}</span>
+    </div>
+
+    <!-- <button class="space" mat-raised-button (click)="upload()" type="submit"> Submit </button> -->
+
+    <br />
+    <strong>OR</strong>
+    <br />
+    <mat-form-field>
+      <mat-label>Video URL</mat-label>
+      <input matInput required type="text">
+    </mat-form-field>
+
+    <br />
+
+    <button type="submit" color="primary" mat-raised-button> Upload the Video </button>
+    <button (click)="cancel()" class="space" type="submit" color="warn" mat-raised-button> Cancel </button>
+
+  </form>
+</div>

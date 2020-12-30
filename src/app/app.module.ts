@@ -15,6 +15,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { environment } from 'src/environments/environment';
+import { NewVideoComponent } from './new-video/new-video.component';
+import { DailogBoxComponent } from './dailog-box/dailog-box.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,10 @@ import { environment } from 'src/environments/environment';
     NavbarComponent,
     HomeComponent,
     VideoPlayerComponent,
+    NewVideoComponent,
+    DailogBoxComponent,
   ],
+  entryComponents: [DailogBoxComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -15,6 +15,8 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   videoURI: string;
   $videoSub: Subscription;
 
+  theErrorSnackBar: any;
+
   constructor(private video: VideoService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
@@ -22,6 +24,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
       this.videoURI = uri;
       if (uri) {
         this.initApp();
+        if (this.theErrorSnackBar) this.theErrorSnackBar.dismiss();
       }
     });
   }
@@ -58,7 +61,10 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
       })
       .catch((error) => {
         // this.onError(error);
-        this.snackBar.open('The Video Could not be played', 'Dismiss');
+        this.theErrorSnackBar = this.snackBar.open(
+          'The Video Could not be played',
+          'Dismiss'
+        );
       }); // onError is executed if the asynchronous load fails.
   }
 
