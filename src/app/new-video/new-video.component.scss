@@ -23,3 +23,47 @@ mat-form-field {
 .space-above {
   margin-top: 20px;
 }
+
+.spinner {
+  margin: auto;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+// .spinner {
+//   float: right;
+// }
+
+// mat-spinner {
+//   float: left;
+//   width: 24px;
+//   height: 24px;
+//   margin: 5px 10px 0px 0px;
+// }
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner 0.8s linear infinite;
+}

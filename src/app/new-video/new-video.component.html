@@ -4,30 +4,40 @@
   <h1>Please enter the following details to upload the Video</h1>
   <h3>You can upload the video from your device or from a remote link</h3>
 
-  <form>
+  <form [formGroup]="newVideoForm" (ngSubmit)="uploadVideoFile()">
 
     <mat-form-field>
       <mat-label>Name of the Video</mat-label>
-      <input matInput required>
+      <input formControlName="name" matInput required>
+      <mat-error *ngIf="name.invalid && name.touched">Please Enter a valid Name that has minimum 5 Characters
+      </mat-error>
       <mat-hint>Minimum 5 Characters</mat-hint>
     </mat-form-field>
     <br />
 
     <mat-form-field>
       <mat-label>Video Description</mat-label>
-      <input matInput required>
+      <input formControlName="subTitle" matInput required>
+      <mat-error *ngIf="subTitle.invalid && subTitle.touched">Please Enter a Description that has minimum 10 Characters
+      </mat-error>
       <mat-hint>Minimum 10 Characters</mat-hint>
     </mat-form-field>
 
     <br />
 
-
     <div class="space-above">
-      <label for="input-file-id" class="space-above">Choose Files</label>
+      <label for="input-file-id" class="space-above">Choose File</label>
       <input hidden="true" (change)="checkFile($event)" type="file" class="ng-hide" id="input-file-id" />
 
       <span class="space" *ngIf="!theFileName" id="file-chosen">No file chosen</span>
       <span class="space" *ngIf="theFileName" id="file-chosen">{{ theFileName }}</span>
+
+      <span class="space" *ngIf="loading" id="file-chosen">Video uplaoding...</span>
+      <span class="space" *ngIf="theFileName && !loading" id="file-chosen">Done ✔</span>
+
+      <!-- <span class="spinner">
+        <mat-spinner [diameter]="30"></mat-spinner>
+      </span> -->
     </div>
 
     <!-- <button class="space" mat-raised-button (click)="upload()" type="submit"> Submit </button> -->
@@ -37,7 +47,7 @@
     <br />
     <mat-form-field>
       <mat-label>Video URL</mat-label>
-      <input matInput required type="text">
+      <input formControlName="uri" matInput required type="text">
     </mat-form-field>
 
     <br />

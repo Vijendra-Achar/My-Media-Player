@@ -8,6 +8,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -20,6 +21,7 @@ const MaterialComponents = [
   MatFormFieldModule,
   MatInputModule,
   MatDialogModule,
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({
