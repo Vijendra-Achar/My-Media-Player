@@ -1,7 +1,9 @@
+import { Router } from '@angular/router';
 import { DailogBoxComponent } from './../dailog-box/dailog-box.component';
 import { CreateNewVideoService } from './../services/create-new-video.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -13,6 +15,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class NewVideoComponent implements OnInit {
   theFile: File;
   theFileName: string;
+  theDownloadURI: string = '';
 
   loading: boolean;
 
@@ -21,7 +24,9 @@ export class NewVideoComponent implements OnInit {
   constructor(
     private newVideo: CreateNewVideoService,
     private dailog: MatDialog,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -60,6 +65,10 @@ export class NewVideoComponent implements OnInit {
       .uploadNewFile(this.theFile.name, this.theFile)
       .then((data) => {
         data.task.snapshot.ref.getDownloadURL().then((downUrl) => {
+          this.theDownloadURI = downUrl;
+
+          this.uri.setValue(this.theDownloadURI);
+          this.uri.disable();
           this.loading = false;
         });
       });
@@ -70,6 +79,22 @@ export class NewVideoComponent implements OnInit {
   }
 
   uploadVideoFile() {
-    console.log(this.newVideoForm.value);
+    let name = this.name.value;
+    let subTitle = this.subTitle.value;
+    let uri = this.uri.value;
+
+    this.newVideo
+      .saveVideoDetails(name, subTitle, uri)
+      .then(() => {
+        this.snackBar.open('The Video was success fully uploaded', 'Dismiss', {
+          duration: 5000,
+        });
+        this.router.navigate(['/']);
+      })
+      .catch((err) => {
+        this.snackBar.open('The Video was success fully uploaded', 'Dismiss', {
+          duration: 5000,
+        });
+      });
   }
 }

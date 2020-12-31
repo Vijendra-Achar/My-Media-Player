@@ -24,6 +24,7 @@
     </mat-form-field>
 
     <br />
+    <br />
 
     <div class="space-above">
       <label for="input-file-id" class="space-above">Choose File</label>
@@ -35,25 +36,25 @@
       <span class="space" *ngIf="loading" id="file-chosen">Video uplaoding...</span>
       <span class="space" *ngIf="theFileName && !loading" id="file-chosen">Done ✔</span>
 
-      <!-- <span class="spinner">
-        <mat-spinner [diameter]="30"></mat-spinner>
-      </span> -->
+
     </div>
 
-    <!-- <button class="space" mat-raised-button (click)="upload()" type="submit"> Submit </button> -->
+    <br />
 
     <br />
     <strong>OR</strong>
     <br />
     <mat-form-field>
       <mat-label>Video URL</mat-label>
-      <input formControlName="uri" matInput required type="text">
+      <input required formControlName="uri" matInput type="text">
+      <mat-hint>This field will be automatically filled if you choose to upload the file from your device</mat-hint>
     </mat-form-field>
 
     <br />
-
-    <button type="submit" color="primary" mat-raised-button> Upload the Video </button>
-    <button (click)="cancel()" class="space" type="submit" color="warn" mat-raised-button> Cancel </button>
+    <br />
+    <button [disabled]="newVideoForm.invalid" type="submit" color="primary" mat-raised-button> Upload
+      the Video </button>
+    <button (click)="cancel()" class="space" color="warn" mat-raised-button> Cancel </button>
 
   </form>
 </div>
