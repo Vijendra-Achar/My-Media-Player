@@ -1,35 +1,37 @@
-<p>login works!</p>
-
 <div class="center">
 
-
-  <h1>Login</h1>
+  <h1 class="space-top">Login</h1>
   <h3>Please Enter you valid credentials to login</h3>
 
-  <!-- <form [formGroup]="newVideoForm" (ngSubmit)="uploadVideoFile()"> -->
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
 
-  <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input matInput required>
-    <mat-error>Please Enter a valid Name that has minimum 5 Characters
-    </mat-error>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput required>
+      <mat-error *ngIf="email.invalid && email.touched">Please Enter a valid E-mail Address
+      </mat-error>
+    </mat-form-field>
+    <br />
 
-  </mat-form-field>
-  <br />
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input formControlName="password" [type]="hide ? 'password' : 'text'" matInput required>
+      <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="password.invalid && password.touched">Please enter your password that is a minimum of 8
+        characters
+        long
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Password</mat-label>
-    <input [type]="hide ? 'password' : 'text'" matInput required>
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-      [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-    <mat-error>Please Enter a Description that has minimum 10 Characters
-    </mat-error>
-  </mat-form-field>
+    <br />
+    <br />
+    <button type="submit" class="custom-btn" color="primary" mat-raised-button>Login</button>
+  </form>
 
-  <br />
+  <div class="divider"> <strong>OR</strong> </div>
 
-  <button color="primary" mat-raised-button>Login</button>
-  <!-- </form> -->
+  <button routerLink="/sign-up" class="custom-btn" color="primary" mat-raised-button>Sign up</button>
 </div>
