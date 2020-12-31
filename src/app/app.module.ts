@@ -19,6 +19,8 @@ import { VideoPlayerComponent } from './video-player/video-player.component';
 import { environment } from 'src/environments/environment';
 import { NewVideoComponent } from './new-video/new-video.component';
 import { DailogBoxComponent } from './dailog-box/dailog-box.component';
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { DailogBoxComponent } from './dailog-box/dailog-box.component';
     VideoPlayerComponent,
     NewVideoComponent,
     DailogBoxComponent,
+    LoginComponent,
+    SignUpComponent,
   ],
   entryComponents: [DailogBoxComponent],
   imports: [
