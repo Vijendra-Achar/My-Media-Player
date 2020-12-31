@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,14 +10,22 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
   hide: boolean = true;
 
+  loading: boolean = false;
+
+  authErrors: any;
+
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authSerivce: AuthService) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
+    });
+
+    this.authSerivce.$authErrors.subscribe((errors) => {
+      this.authErrors = errors;
     });
   }
 
@@ -28,6 +37,9 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.loginForm.value);
+    this.loading = true;
+    this.authSerivce.login(this.email.value, this.password.value).then(() => {
+      this.loading = false;
+    });
   }
 }

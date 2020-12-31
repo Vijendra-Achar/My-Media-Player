@@ -1,5 +1,4 @@
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Video } from './video.model';
 
 import { Injectable } from '@angular/core';
 

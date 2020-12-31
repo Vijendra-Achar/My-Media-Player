@@ -2,7 +2,9 @@
 
   <h1 class="space-top">Sign Up</h1>
   <h3>Please Enter valid details to sign up for a new Account</h3>
-
+  <br />
+  <mat-error *ngIf="authErrors"> {{ authErrors?.message }}</mat-error>
+  <br />
   <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
 
     <mat-form-field>
@@ -34,7 +36,9 @@
 
     <br />
 
-    <button type="submit" [disabled]="signUpForm.invalid" class="custom-btn" color="primary" mat-raised-button>Sign
+    <button *ngIf="!loading" type="submit" [disabled]="signUpForm.invalid" class="custom-btn" color="primary"
+      mat-raised-button>Sign
       up</button>
+    <button *ngIf="loading" disabled class="custom-btn" color="primary" mat-raised-button>Creating new user...</button>
   </form>
 </div>

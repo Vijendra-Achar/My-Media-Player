@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';
 import { DailogBoxComponent } from './../dailog-box/dailog-box.component';
 import { CreateNewVideoService } from './../services/create-new-video.service';
@@ -16,7 +17,7 @@ export class NewVideoComponent implements OnInit {
   theFile: File;
   theFileName: string;
   theDownloadURI: string = '';
-
+  currentUser: firebase.default.User;
   loading: boolean;
 
   newVideoForm: FormGroup;
@@ -26,7 +27,8 @@ export class NewVideoComponent implements OnInit {
     private dailog: MatDialog,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +36,10 @@ export class NewVideoComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(5)]],
       subTitle: ['', [Validators.required, Validators.minLength(10)]],
       uri: '',
+    });
+
+    this.authService.getUserState().subscribe((user) => {
+      this.currentUser = user;
     });
 
     this.loading = false;
@@ -82,9 +88,10 @@ export class NewVideoComponent implements OnInit {
     let name = this.name.value;
     let subTitle = this.subTitle.value;
     let uri = this.uri.value;
+    let uploadedBy = this.currentUser.uid;
 
     this.newVideo
-      .saveVideoDetails(name, subTitle, uri)
+      .saveVideoDetails(name, subTitle, uri, uploadedBy)
       .then(() => {
         this.snackBar.open('The Video was success fully uploaded', 'Dismiss', {
           duration: 5000,

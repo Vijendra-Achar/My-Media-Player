@@ -5,10 +5,20 @@
 
   <div>
     <button color="primary" class="space-left" routerLink="/new-video" mat-flat-button>
-      New Video
+      Upload New Video
     </button>
-    <button color="primary" class="space-left" routerLink="/login" mat-flat-button>
+    <button *ngIf="!user" color="primary" class="space-left" routerLink="/login" mat-flat-button>
       Login
     </button>
+
+    <mat-menu #userMenu="matMenu">
+      <button routerLink="/profile-and-videos" mat-menu-item>My Videos</button>
+      <button (click)="logout()" mat-menu-item>Logout</button>
+    </mat-menu>
+    <button [matMenuTriggerFor]="userMenu" *ngIf="user" color="primary" mat-flat-button>{{ user.displayName }}
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+
+
   </div>
 </mat-toolbar>

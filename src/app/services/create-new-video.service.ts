@@ -18,9 +18,9 @@ export class CreateNewVideoService {
       .put(file);
   }
 
-  saveVideoDetails(name, subTitle, uri) {
+  saveVideoDetails(name, subTitle, uri, uploadedBy) {
     return this.angularFirestore
       .collection('theVideoURIs')
-      .add({ name, subTitle, uri });
+      .add({ name, subTitle, uri, uploadedBy });
   }
 }

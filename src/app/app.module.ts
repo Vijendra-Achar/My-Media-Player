@@ -21,6 +21,7 @@ import { NewVideoComponent } from './new-video/new-video.component';
 import { DailogBoxComponent } from './dailog-box/dailog-box.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { MyProfileAndVideosComponent } from './my-profile-and-videos/my-profile-and-videos.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     DailogBoxComponent,
     LoginComponent,
     SignUpComponent,
+    MyProfileAndVideosComponent,
   ],
   entryComponents: [DailogBoxComponent],
   imports: [
@@ -44,6 +46,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
       'angular-auth-firebase'
     ),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
