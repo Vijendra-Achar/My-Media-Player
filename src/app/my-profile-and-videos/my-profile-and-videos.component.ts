@@ -1,12 +1,9 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { GetVideo } from './../services/getVideo.model';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+
 import { GetVideosService } from './../services/get-videos.service';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { chainedInstruction } from '@angular/compiler/src/render3/view/util';
 
 export interface MyVideo {
   id: string;

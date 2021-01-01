@@ -46,7 +46,6 @@ export class AuthService {
               duration: 5000,
             }
           );
-          this.router.navigate(['/']);
         });
       })
       .catch((error) => {

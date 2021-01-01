@@ -11,6 +11,8 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   allVideos: Array<Video>;
 
+  isPlaying: boolean = false;
+
   constructor(
     private video: VideoService,
     private getVideos: GetVideosService
@@ -24,5 +26,6 @@ export class HomeComponent implements OnInit {
 
   playMe(theVideoId: string) {
     this.video.playVideo(theVideoId);
+    this.isPlaying = true;
   }
 }
