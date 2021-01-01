@@ -1,3 +1,4 @@
+import { take } from 'rxjs/operators';
 import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';
 import { DailogBoxComponent } from './../dailog-box/dailog-box.component';
@@ -81,7 +82,19 @@ export class NewVideoComponent implements OnInit {
   }
 
   cancel() {
-    this.dailog.open(DailogBoxComponent);
+    const dailogBox = this.dailog.open(DailogBoxComponent, {
+      data: {
+        title: 'Cancel?',
+        message: 'Are you sure that you wish to cancel?',
+      },
+    });
+
+    dailogBox
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe((ans) => {
+        if (ans === 'true') this.router.navigate(['/']);
+      });
   }
 
   uploadVideoFile() {

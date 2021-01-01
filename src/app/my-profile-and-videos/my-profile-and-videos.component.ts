@@ -1,9 +1,12 @@
+import { take } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 
 import { GetVideosService } from './../services/get-videos.service';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { DailogBoxComponent } from './../dailog-box/dailog-box.component';
 
 export interface MyVideo {
   id: string;
@@ -33,7 +36,8 @@ export class MyProfileAndVideosComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private getVideos: GetVideosService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dailog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -44,11 +48,25 @@ export class MyProfileAndVideosComponent implements OnInit, OnDestroy {
   }
 
   delete(videoId) {
-    this.getVideos.deleteVideo(videoId).then(() => {
-      this.snackBar.open('Video Deleted', 'Dismiss', {
-        duration: 3000,
-      });
+    const dailogBox = this.dailog.open(DailogBoxComponent, {
+      data: {
+        title: 'Delete?',
+        message: 'Are you sure that you want delete this video?',
+      },
     });
+
+    dailogBox
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe((ans) => {
+        if (ans === 'true') {
+          this.getVideos.deleteVideo(videoId).then(() => {
+            this.snackBar.open('Video Deleted', 'Dismiss', {
+              duration: 3000,
+            });
+          });
+        }
+      });
   }
 
   getVideosOfLoggedInUser() {

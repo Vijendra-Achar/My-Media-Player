@@ -1,8 +1,8 @@
 <h3 mat-dialog-title>
-  Cancel?
+  {{ data.title }}
 </h3>
-<mat-dialog-content>Are you sure that you wish to cancel?</mat-dialog-content>
+<mat-dialog-content>{{ data.message }}</mat-dialog-content>
 <mat-dialog-actions>
-  <button routerLink="/" mat-button mat-dialog-close>Yes</button>
-  <button mat-button mat-dialog-close>No</button>
+  <button mat-button mat-dialog-close mat-dialog-close="true">Yes</button>
+  <button mat-button mat-dialog-close mat-dialog-close="false">No</button>
 </mat-dialog-actions>

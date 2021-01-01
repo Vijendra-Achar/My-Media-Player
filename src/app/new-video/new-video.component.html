@@ -24,7 +24,7 @@
 
     <br />
 
-    <div class="space-above">
+    <div>
       <label for="input-file-id" class="space-above">Choose File</label>
       <input hidden="true" (change)="checkFile($event)" type="file" class="ng-hide" id="input-file-id" />
 
@@ -49,7 +49,7 @@
     <br />
     <button [disabled]="newVideoForm.invalid" type="submit" color="primary" mat-raised-button> Upload
       the Video </button>
-    <button (click)="cancel()" class="space" color="warn" mat-raised-button> Cancel </button>
+    <button (click)="cancel()" class="space" type="button" color="warn" mat-raised-button> Cancel </button>
 
   </form>
 </div>

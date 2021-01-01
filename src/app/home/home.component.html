@@ -15,7 +15,8 @@
 
 <div class="center background" *ngIf="isPlaying">
   <app-video-player></app-video-player><br />
-  <h5>Now playing {{ allVideos[currentlyPlayingVidIndex].name }}</h5>
+  <h5 class="now-playing-text">Now playing <span class="now-playing"> {{ allVideos[currentlyPlayingVidIndex].name
+      }}</span></h5>
 </div>
 
 <div class="container">
