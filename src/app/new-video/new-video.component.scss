@@ -16,10 +16,6 @@ mat-form-field {
   margin: 15px;
 }
 
-.space-above {
-  margin-top: 20px;
-}
-
 .spinner {
   margin: auto;
   width: 20px;
@@ -30,17 +26,6 @@ mat-form-field {
   left: 0;
   right: 0;
 }
-
-// .spinner {
-//   float: right;
-// }
-
-// mat-spinner {
-//   float: left;
-//   width: 24px;
-//   height: 24px;
-//   margin: 5px 10px 0px 0px;
-// }
 
 @keyframes spinner {
   to {

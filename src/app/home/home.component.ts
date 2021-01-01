@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   allVideos: Array<Video>;
 
   isPlaying: boolean = false;
-
+  currentlyPlayingVidIndex: number = -1;
   allVideosSub: Subscription;
 
   constructor(
@@ -30,7 +30,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
 
-  playMe(theVideoId: string) {
+  playMe(theVideoId: string, i: number) {
+    this.currentlyPlayingVidIndex = i;
     this.video.playVideo(theVideoId);
     this.isPlaying = true;
   }

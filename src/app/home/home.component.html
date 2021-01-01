@@ -1,15 +1,28 @@
-<h1 class="center margin-top">Hello, Welcome</h1>
-<br />
+<div class="landing">
+  <div class="landingText">
+    <h1>Welcome to <span class="main">My Media Player</span></h1>
+    <h3 class="sub-heading">A place to watch, stream and upload <br /> your own Videos</h3>
+  </div>
+  <div class="landingImg">
+    <img src="assets/video_player.svg">
+  </div>
+</div>
 
-<div class="center" *ngIf="isPlaying">
+<div class="center space-around">
+  <h3>Start playing your favourite video</h3>
+</div>
+
+
+<div class="center background" *ngIf="isPlaying">
   <app-video-player></app-video-player><br />
+  <h5>Now playing {{ allVideos[currentlyPlayingVidIndex].name }}</h5>
 </div>
 
 <div class="container">
 
   <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
 
-    <div fxFlex="25%" *ngFor="let vid of allVideos">
+    <div fxFlex="33.33%" *ngFor="let vid of allVideos; let i = index">
       <mat-card class="mat-elevation-z4">
         <mat-card-header>
           <mat-card-title class="margin">{{ vid?.name }}</mat-card-title>
@@ -19,7 +32,7 @@
           <p>{{ vid?.subTitle }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button (click)="playMe(vid.uri)" color="accent" mat-button>
+          <button (click)="playMe(vid.uri, i)" color="accent" mat-button>
             <mat-icon>play_arrow</mat-icon> Play Video
           </button>
         </mat-card-actions>

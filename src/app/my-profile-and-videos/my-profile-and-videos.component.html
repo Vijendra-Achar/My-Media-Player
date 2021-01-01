@@ -1,19 +1,20 @@
 <div class="center">
 
-  <h2> Hello, {{ user?.displayName }}</h2>
-  <p> Your registered with the E-mail address <span class="email-highlight"> {{ user?.email }}</span> </p>
+  <h1 class="space-above main-heading"> Hello, {{ user?.displayName }}</h1>
+  <h3 class="sub-heading"> Your registered with the E-mail address <span class="email-highlight"> {{ user?.email
+      }}</span> </h3>
 
   <br />
 
-  <h3>Here are the list of your Videos</h3>
-  <h4 *ngIf="!videoData || videoData?.length <= 0">You do not have any videos yet. Upload new ones</h4>
+  <h3 *ngIf="videoData?.length > 0 && videoData">Your videos on the platform are listed below</h3>
+  <h4 *ngIf="!videoData || videoData?.length <=0">You do not have any videos yet. Upload new ones</h4> <br />
+  <div *ngIf="!videoData || videoData?.length <=0"><button routerLink='/new-video' color="primary"
+      mat-raised-button>Upload new video</button>
+  </div>
 </div>
 
 <br />
 <table *ngIf="videoData?.length > 0" mat-table [dataSource]="videoData" class="mat-elevation-z8">
-
-
-
 
   <ng-container matColumnDef="no">
     <th mat-header-cell *matHeaderCellDef> No.</th>
@@ -25,12 +26,10 @@
     <td mat-cell *matCellDef="let element;"> {{ element.id }} </td>
   </ng-container>
 
-
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
     <td mat-cell *matCellDef="let element"> {{element.data.name}} </td>
   </ng-container>
-
 
   <ng-container matColumnDef="delete">
     <th mat-header-cell *matHeaderCellDef> Delete? </th>

@@ -1,28 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
 
-// @import url("https://fonts.googleapis.com/css2?family=Frijole&family=Montserrat:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&display=swap");
 
 html,
 body {
   height: 100%;
-}
-body {
   margin: 0;
-  font-family: Poppins, "Roborto", "Helvetica Neue", sans-serif;
+  font-family: Nunito, "Roborto", "Helvetica Neue", sans-serif;
+  // background-color: #ebebeb;
 }
 
 .center {
   text-align: center;
 }
 
-.space-top {
-  margin-top: 5rem;
+.space-above {
+  margin-top: 65px;
+}
+
+button:focus,
+button:active:focus,
+button.active:focus,
+span {
+  outline: none !important;
+  outline-style: none !important;
 }
 
 .custom-btn {
   width: 200px;
   height: 40px;
   font-size: 1.2rem;
+}
+
+.main-heading {
+  font-weight: 700;
+}
+
+.sub-heading {
+  font-weight: 300;
 }
