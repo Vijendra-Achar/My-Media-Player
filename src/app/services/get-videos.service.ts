@@ -1,18 +1,14 @@
-import { Subject, BehaviorSubject } from 'rxjs';
+import { GetVideo } from './getVideo.model';
+import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 import { Injectable } from '@angular/core';
+import { switchMap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GetVideosService {
-  private $videos = new BehaviorSubject<Array<any>>([]);
-
-  queryObs = this.$videos.asObservable();
-
-  queriedVids: Array<any> = [];
-
   constructor(private angularFirestore: AngularFirestore) {}
 
   getAllVideos() {
@@ -20,16 +16,23 @@ export class GetVideosService {
   }
 
   getVideosForCurrentUser(currentUserId: string) {
-    this.angularFirestore
-      .collection('theVideoURIs')
-      .ref.where('uploadedBy', '==', currentUserId)
-      .get()
-      .then((query) => {
-        query.forEach((video) => {
-          this.queriedVids.push({ id: video.id, data: video.data() });
-        });
-        this.$videos.next(this.queriedVids);
-      });
+    let getVideosCollection = this.angularFirestore.collection<GetVideo[]>(
+      'theVideoURIs',
+      (ref) => ref.where('uploadedBy', '==', currentUserId)
+    );
+
+    return getVideosCollection.snapshotChanges().pipe(
+      map((videos) => {
+        if (videos) {
+          const availableVideos = videos.map((vids) => {
+            const data = vids.payload.doc.data();
+            const id = vids.payload.doc.id;
+            return { id, data };
+          });
+          return availableVideos;
+        }
+      })
+    );
   }
 
   deleteVideo(videoId: string) {

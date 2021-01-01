@@ -1,7 +1,12 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { GetVideo } from './../services/getVideo.model';
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { GetVideosService } from './../services/get-videos.service';
 import { AuthService } from './../services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { chainedInstruction } from '@angular/compiler/src/render3/view/util';
 
 export interface MyVideo {
   id: string;
@@ -18,33 +23,47 @@ export interface MyVideo {
   templateUrl: './my-profile-and-videos.component.html',
   styleUrls: ['./my-profile-and-videos.component.scss'],
 })
-export class MyProfileAndVideosComponent implements OnInit {
+export class MyProfileAndVideosComponent implements OnInit, OnDestroy {
   user: firebase.default.User;
 
-  videoData: Array<any> = [];
+  videoData: any;
 
   displayedColumns: string[] = ['no', 'name', 'id', 'delete'];
+
+  userStateSub: Subscription;
+  getVidDataSub: Subscription;
 
   constructor(
     private authService: AuthService,
     private getVideos: GetVideosService,
-    private router: Router
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    this.authService.getUserState().subscribe((user) => {
+    this.userStateSub = this.authService.getUserState().subscribe((user) => {
       this.user = user;
-      this.getVideos.getVideosForCurrentUser(this.user.uid);
-    });
-
-    this.getVideos.queryObs.subscribe((data) => {
-      this.videoData = data;
+      this.getVideosOfLoggedInUser();
     });
   }
 
   delete(videoId) {
     this.getVideos.deleteVideo(videoId).then(() => {
-      location.reload();
+      this.snackBar.open('Video Deleted', 'Dismiss', {
+        duration: 3000,
+      });
     });
+  }
+
+  getVideosOfLoggedInUser() {
+    this.getVidDataSub = this.getVideos
+      .getVideosForCurrentUser(this.user.uid)
+      .subscribe((vidData) => {
+        this.videoData = vidData;
+      });
+  }
+
+  ngOnDestroy() {
+    this.getVidDataSub.unsubscribe();
+    this.userStateSub.unsubscribe();
   }
 }
