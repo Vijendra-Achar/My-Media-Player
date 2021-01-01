@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -26,6 +27,7 @@ const MaterialComponents = [
   MatProgressSpinnerModule,
   MatMenuModule,
   MatTableModule,
+  FlexLayoutModule,
 ];
 
 @NgModule({
