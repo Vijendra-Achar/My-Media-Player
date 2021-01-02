@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { map, take, tap } from 'rxjs/operators';
@@ -14,7 +15,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -29,7 +34,13 @@ export class AuthGuard implements CanActivate {
       map((user) => !!user), // <-- map to boolean
       tap((loggedIn) => {
         if (!loggedIn) {
-          console.log('access denied');
+          this.snackBar.open(
+            'You need be Logged in to access this feature',
+            'Dismiss',
+            {
+              duration: 5000,
+            }
+          );
           this.router.navigate(['/login']);
         }
       })
