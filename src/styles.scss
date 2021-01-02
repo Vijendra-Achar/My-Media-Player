@@ -39,3 +39,7 @@ span {
 .sub-heading {
   font-weight: 300;
 }
+
+.min-height {
+  min-height: calc(100vh - 64px - 120px);
+}

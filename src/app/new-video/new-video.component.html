@@ -31,8 +31,12 @@
       <span class="space" *ngIf="!theFileName" id="file-chosen">No file chosen</span>
       <span class="space" *ngIf="theFileName" id="file-chosen">{{ theFileName }}</span>
 
-      <span class="space" *ngIf="loading" id="file-chosen">Video uplaoding...</span>
-      <span class="space" *ngIf="theFileName && !loading" id="file-chosen">Done ✔</span>
+      <span *ngIf="loading" class="space">
+        <span class="margin spinner-border spinner-border-sm" id="file-chosen"></span>
+        Video uplaoding...
+      </span>
+
+      <span class="space" *ngIf="theFileName && !loading" id="file-chosen">✔ Done</span>
 
     </div>
 
