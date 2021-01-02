@@ -11,6 +11,7 @@
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input type="email" formControlName="email" matInput required>
+      <mat-hint>Example: hello@example.com</mat-hint>
       <mat-error *ngIf="email.invalid && email.touched">Please Enter a valid E-mail Address
       </mat-error>
     </mat-form-field>
@@ -23,6 +24,7 @@
         [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
+      <mat-hint>Remember? Your password has a minimum of 8 characters</mat-hint>
       <mat-error *ngIf="password.invalid && password.touched">Please enter your password that is a minimum of 8
         characters
         long
