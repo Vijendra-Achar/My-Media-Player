@@ -32,8 +32,8 @@
         <mat-card-content>
           <p>{{ vid?.subTitle }}</p>
         </mat-card-content>
-        <mat-card-actions>
-          <button (click)="playMe(vid.uri, i)" color="accent" mat-button>
+        <mat-card-actions align="end">
+          <button (click)="playMe(vid.uri, i)" color="accent" mat-raised-button>
             <mat-icon>play_arrow</mat-icon> Play Video
           </button>
         </mat-card-actions>
@@ -43,39 +43,4 @@
   </div>
 </div>
 
-
-<!-- <mat-grid-list cols="3" rowHeight="3:2">
-  <mat-grid-tile *ngIf="isPlaying" colspan="3"></mat-grid-tile>
-  <mat-grid-tile *ngFor="let vid of allVideos">
-    <mat-card-title>{{ vid?.name }}</mat-card-title>
-    <mat-card-content>{{ vid?.subTitle }}</mat-card-content>
-  </mat-grid-tile>
-
-</mat-grid-list> -->
-
-
-
-<!-- <div class="center">
-  <br />
-  <h1>Welcome Home</h1>
-  <br />
-  <app-video-player *ngIf="isPlaying"></app-video-player>
-
-  <br />
-
-</div>
-
-<div class="center-card" *ngFor="let vid of allVideos">
-
-  <mat-card>
-    <mat-card-title align="start">{{ vid?.name }}</mat-card-title>
-    <mat-card-subtitle align="start">{{ vid?.subTitle }}</mat-card-subtitle>
-    <mat-card-actions align="start">
-      <button color="accent" (click)="playMe(vid.uri)" mat-button>
-        <mat-icon align="start">play_arrow</mat-icon>
-        Play this
-      </button>
-    </mat-card-actions>
-  </mat-card>
-
-</div> -->
+<app-footer></app-footer>

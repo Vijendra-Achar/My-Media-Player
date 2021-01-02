@@ -22,6 +22,7 @@ import { DailogBoxComponent } from './dailog-box/dailog-box.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MyProfileAndVideosComponent } from './my-profile-and-videos/my-profile-and-videos.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MyProfileAndVideosComponent } from './my-profile-and-videos/my-profile-
     LoginComponent,
     SignUpComponent,
     MyProfileAndVideosComponent,
+    FooterComponent,
   ],
   entryComponents: [DailogBoxComponent],
   imports: [
